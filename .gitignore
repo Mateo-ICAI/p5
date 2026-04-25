@@ -1,0 +1,18 @@
+# === Backend (Java / Maven / Spring) ===
+backend/target/
+backend/.idea/
+backend/*.iml
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/HELP.md
+
+# === Frontend ===
+frontend/node_modules/
+frontend/.vscode/
+
+# === Genéricos ===
+.idea/
+.vscode/
+*.log
+*.class
+.DS_Store
+Thumbs.db
