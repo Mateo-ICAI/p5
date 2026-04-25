@@ -1,7 +1,8 @@
 import { getCarrito, deleteLinea, borrarCarrito } from './api.js';
 import { obtenerIdCarrito, olvidarCarrito } from './carrito-session.js';
+import { mostrarToast } from './ui.js';
 
-// Diccionario de ids a animales
+// dicc ids a animales
 const NOMBRES_ARTICULOS = {
     1: 'León',
     2: 'Piraña',
@@ -9,10 +10,8 @@ const NOMBRES_ARTICULOS = {
 };
 
 const contenedor = document.getElementById('carrito-contenedor');
-
 let idCarritoActual = null;
 
-// crear el carrito en pagina
 async function cargarYPintarCarrito() {
     try {
         idCarritoActual = await obtenerIdCarrito();
@@ -21,14 +20,13 @@ async function cargarYPintarCarrito() {
     } catch (err) {
         console.error('[P5] Error cargando el carrito:', err);
         contenedor.innerHTML = `
-            <p style="color: red;">
-                No se pudo cargar el carrito. pserver
+            <p style="color: #a04000;">
+                No se puede cargar al carrito.
             </p>
         `;
     }
 }
 
-// generar HTML pagina carrito
 function pintarCarrito(carrito) {
     if (!carrito.lineas || carrito.lineas.length === 0) {
         contenedor.innerHTML = `
@@ -76,19 +74,18 @@ function pintarCarrito(carrito) {
     `;
 }
 
-// eliminar linea de carrito
 async function eliminarLineaCarrito(idLinea) {
     try {
-
         const carritoActualizado = await deleteLinea(idCarritoActual, idLinea);
         pintarCarrito(carritoActualizado);
+        mostrarToast('Línea eliminada', 'info');
+        window.dispatchEvent(new CustomEvent('carrito:cambiado'));
     } catch (err) {
         console.error('[P5] Error eliminando línea:', err);
-        alert(`No se pudo eliminar la línea.\n${err.message}`);
+        mostrarToast('No se pudo eliminar la línea', 'error');
     }
 }
 
-// borrar carrito
 async function pagarCarrito() {
     if (!confirm('¿Confirmas la compra? Esto vaciará tu carrito.')) {
         return;
@@ -97,16 +94,15 @@ async function pagarCarrito() {
     try {
         await borrarCarrito(idCarritoActual);
         olvidarCarrito();
-        alert('Compra realizada. ¡Gracias por confiar en Animales chulos chulos!');
-        // Recargamos para que la página vuelva a su estado inicial
-        await cargarYPintarCarrito();
+        mostrarToast('✅ Compra realizada. ¡Gracias!', 'exito', 4000);
+        await cargarYPintarCarrito();   // ← primero recargamos (esto crea el carrito nuevo)
+        window.dispatchEvent(new CustomEvent('carrito:cambiado'));   // ← y después notificamos
     } catch (err) {
         console.error('[P5] Error al pagar:', err);
-        alert(`No se pudo procesar la compra.\n${err.message}`);
+        mostrarToast('No se pudo procesar la compra', 'error');
     }
 }
 
-// escucha clicks
 contenedor.addEventListener('click', (evento) => {
     const objetivo = evento.target;
 
@@ -122,7 +118,6 @@ contenedor.addEventListener('click', (evento) => {
     }
 });
 
-// Arrancamos al cargar la página.
 cargarYPintarCarrito();
 
 console.log('[P5] carrito.js cargado');

@@ -128,3 +128,62 @@ button, input[type="submit"] {
 button:hover, input[type="submit"]:hover {
     background-color: #a04000; 
 }
+
+/* === Toasts === */
+#toast-contenedor {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.toast {
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    min-width: 200px;
+    pointer-events: auto;
+}
+
+.toast-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-exito {
+    background-color: #2c5e1a;
+}
+
+.toast-error {
+    background-color: #a04000;
+}
+
+.toast-info {
+    background-color: #555;
+}
+
+/* === Badge del menú === */
+.badge-carrito {
+    display: inline-block;
+    background-color: #d35400;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.85em;
+    margin-left: 5px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.badge-carrito-oculto {
+    display: none;
+}
