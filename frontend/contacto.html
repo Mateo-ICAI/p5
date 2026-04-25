@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Animales chulos chulos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo de Animales</a></li>
+            <li><a href="carrito.html">Mi Carrito</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Contáctanos</h1>
+    </header>
+
+    <main>
+        <p>Si quieres que te vendamos algun otro animal, pidenoslo sin ningun problema y te lo conseguiremos. Si quieres que te programe una página web, tambien escribenos.</p>
+
+        <form action="#" method="POST">
+            <label for="nombre">Nombre completo:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="email">Correo electrónico:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="animal">¿Qué animal te interesa más?</label><br>
+            <select id="animal" name="animal">
+                <option value="leon">León</option>
+                <option value="tigre">Tigre</option>
+                <option value="elefante">Elefante</option>
+                <option value="hiena">Hiena</option>
+                <option value="pirana">Piraña</option>
+                <option value="p_web">Pagina Web</option>
+            </select><br><br>
+
+            <label for="mensaje">Tu mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea><br><br>
+
+            <input type="submit" value="Enviar Mensaje">
+        </form>
+    </main>
+
+</body>
+</html>
