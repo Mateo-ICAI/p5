@@ -24,31 +24,11 @@
     <main>
         <p>Revisa los animales que has seleccionado antes de proceder al pago.</p>
 
-        <table border="1">
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-            </tr>
-            <tr>
-                <td>Mosquito</td>
-                <td>10</td>
-                <td>150 €</td>
-            </tr>
-            <tr>
-                <td>Piraña</td>
-                <td>1</td>
-                <td>0.50 €</td>
-            </tr>
-            <tr>
-                <td colspan="2"><strong>Total a pagar:</strong></td>
-                <td><strong>150.50 €</strong></td>
-            </tr>
-        </table>
-        <br>
-        <button>Pagar</button>
+        <div id="carrito-contenedor">
+            <p id="estado-carga">Cargando carrito...</p>
+        </div>
     </main>
 
-    <script src="js/main.js" type="module"></script>
+    <script src="js/carrito.js" type="module"></script>
 </body>
 </html>
